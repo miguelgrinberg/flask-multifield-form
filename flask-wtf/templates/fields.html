@@ -1,0 +1,17 @@
+{% macro text(field, label, autofocus) %}
+  {% if label %}
+    {{ field.label(class='form-label') }}
+  {% endif %}
+  {% if autofocus %}
+    {{ field(class='form-control' + (' is-invalid' if field.errors else ''), autofocus="true") }}
+  {% else %}
+    {{ field(class='form-control' + (' is-invalid' if field.errors else '')) }}
+  {% endif %}
+  {% if field.errors %}
+  <div class="invalid-feedback">{{ field.errors|join(', ') }}</div>
+  {% endif %}
+{% endmacro %}
+
+{% macro select(field) %}
+  {{ field(class="form-select") }}
+{% endmacro %}
